@@ -18,7 +18,8 @@ import zipkin.Span;
 import zipkin.reporter.AsyncReporter;
 import zipkin.reporter.Reporter;
 import zipkin.reporter.Sender;
-import zipkin.reporter.okhttp3.OkHttpSender;
+import zipkin.reporter.kafka08.KafkaSender;
+//import zipkin.reporter.okhttp3.OkHttpSender;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
@@ -39,7 +40,8 @@ public class ZipkinConfiguration extends WebMvcConfigurerAdapter {
 
     @Bean
     public Sender sender() {
-        return OkHttpSender.create(zipkinProperties.getEndpoint());
+        //return OkHttpSender.create(zipkinProperties.getEndpoint());
+        return KafkaSender.builder().bootstrapServers(zipkinProperties.getKafkaServers()).build();
     }
 
     @Bean

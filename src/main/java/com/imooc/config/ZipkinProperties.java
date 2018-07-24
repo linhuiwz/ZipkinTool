@@ -10,4 +10,5 @@ import org.springframework.stereotype.Component;
 public class ZipkinProperties {
     private String endpoint;
     private String service;
+    private String kafkaServers;
 }
